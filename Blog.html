@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Web Page with Menu Bar</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #363636;
+      color: #000000;
+    }
+
+    h1, h3 {
+      color: #b0f4ff;
+    }
+
+    p {
+      font-size: 18px;
+      color: white;
+    }
+
+    a {
+      color: #117a65;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Menu Bar --- */
+    nav {
+      background-color: #333;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline-block;
+    }
+
+    nav ul li a {
+      display: block;
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #242424;
+      color: #ffcc00;
+    }
+
+    nav ul li a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    /* --- Content --- */
+    .content {
+      padding: 40px;
+      text-align: center;
+      font-size: 1.2em;
+      color: #fff;
+    }
+
+    /* --- Customer Feedback Cards --- */
+    .feedback-container {
+      max-width: 800px;
+      margin: 30px auto;
+      text-align: left;
+    }
+
+    .feedback {
+      background-color: #2a2a2a;
+      border: 1px solid #555;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .feedback strong {
+      color: #ffcc00;
+    }
+
+    .feedback em {
+      color: #b0f4ff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Menu -->
+  <nav>
+    <ul>
+      <li><a class="active" href="Index.html">Index</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Blog Content -->
+  <div class="content">
+    <h1>The Blog</h1>
+
+    <img src="Images/B-Luxury.jpg" width="250" alt="B-Luxury Logo"> 
+   <img src="Images/wahanda glide.png" width="250" alt="Wahanda Glide">
+
+    <h3>Customer Feedback</h3>
+
+    <div class="feedback-container">
+      <div class="feedback">
+        <p><strong>Dal</strong> (Joined: October 3, 2024)</p>
+        <p>Comment: The shoes are good and they are actually comfier than I thought.</p>
+      </div>
+
+      <div class="feedback">
+        <p><strong>Matthew</strong> (Joined: November 12, 2024)</p>
+        <p>The shoes were nice! I liked the traditional patterns and the name of the shoes is catchy: <em>"Wahanda Glide"</em>.</p>
+      </div>
+
+      <div class="feedback">
+        <p><strong>Isaiah</strong> (Joined: January 8, 2025)</p>
+        <p>The black-gold looks good and you can match it with any outfit. The design is just WOW!!</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

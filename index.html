@@ -9,16 +9,15 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       background-color: #363636;
-      color: #000000;
+      color: white; /* Improved readability */
     }
 
-    h1, h3, h4, h5 {
+    h1, h2, h3, h4, h5, h6 {
       color: #b0f4ff;
     }
 
     p {
       font-size: 18px;
-      color: white;
     }
 
     a {
@@ -95,19 +94,23 @@
     }
 
     /* --- Content --- */
-    .content {
+    main {
       padding: 40px;
       text-align: center;
-      font-size: 1.2em;
-      color: #fff;
+      font-size: 1.1em;
     }
 
     /* --- Product Table --- */
+    .table-container {
+      overflow-x: auto; /* Makes table scrollable on small screens */
+    }
+
     .product-table {
       margin: 30px auto;
       border-collapse: collapse;
       width: 80%;
       color: white;
+      min-width: 400px;
     }
 
     .product-table th, .product-table td {
@@ -143,95 +146,108 @@
     }
 
     .footer-links a {
-      margin: 0 10px;
+      margin: 0 15px;
       color: #b0f4ff;
+      font-weight: 500;
     }
 
     .footer-links a:hover {
       color: #ffcc00;
     }
-	</style>
+  </style>
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav>
     <ul>
-      <li><a class="active" href="Index.html">Index</a></li>
+      <li><a class="active" href="Index.html">Home</a></li>
       <li><a href="Blog.html">Blog</a></li>
       <li><a href="About.html">About</a></li>
       <li><a href="Contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <div class="content">
-    <h1>My Shoe Business</h1>
-    <h2>This is my Homepage</h2>
-    <p>Welcome to my website. This is my first website.</p>
+  <!-- Main Content -->
+  <main>
+    <section>
+      <h1>My Shoe Business</h1>
+      <h2>This is my Homepage</h2>
+      <p>Welcome to my website. This is my first website.</p>
+      <img src="Images/B-Luxury.jpg" width="250" alt="B-Luxury company logo"> 
+    </section>
 
-    <img src="Images/B-Luxury.jpg" width="250" alt="B-Luxury Logo"> 
+    <section>
+      <h3>My Services</h3>
+      <ul>
+        <li>Design and Manufacturing</li> 
+        <li>Marketing and Distribution</li> 
+        <li>Custom shoe fitting or repair</li>
+      </ul>
+    </section>
 
-    <h3>My Services</h3>
-    <ul>
-      <li>Design and Manufacturing</li> 
-      <li>Marketing and Distribution</li> 
-      <li>Custom shoe fitting or repair</li>
-    </ul>
+    <section>
+      <h4>Our Products</h4>
+      <img src="Images/B-Lux One.png" width="250" alt="B-Lux One premium sneaker"> 
+      <img src="Images/wahanda glide.png" width="250" alt="Wahanda Glide lightweight sneaker">
 
-    <h4>Our Products</h4>
-    <img src="Images/B-Lux One.png" width="250" alt="B-Lux One"> 
-    <img src="Images/wahanda glide.png" width="250" alt="Wahanda Glide">
+      <h5>Our Story</h5>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/iWI_uBH6R1g?si=bOIYaVyoFyFVhpZr" 
+          title="Wahanda Glide Story - YouTube video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div>
 
-    <h5>Our Story</h5>
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/iWI_uBH6R1g?si=bOIYaVyoFyFVhpZr" 
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-      </iframe>
-    </div>
+      <div class="table-container">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Available Sizes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="Images/B-Lux One.png" width="150" alt="B-Lux One sneaker" class="product-img"></td>
+              <td>B-Lux One</td>
+              <td>$60</td>
+              <td>40 | 41 | 42 | 43 | 44</td>
+            </tr>
+            <tr>
+              <td><img src="Images/wahanda glide.png" width="150" alt="Wahanda Glide sneaker" class="product-img"></td>
+              <td>Wahanda Glide</td>
+              <td>$45</td>
+              <td>39 | 40 | 41 | 42</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Available Sizes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><img src="Images/B-Lux One.png" width="150" alt="B-Lux One" class="product-img"></td>
-          <td>B-Lux One</td>
-          <td>$60</td>
-          <td>40 | 41 | 42 | 43 | 44</td>
-        </tr>
-        <tr>
-          <td><img src="Images/wahanda glide.png" width="150" alt="Wahanda Glide" class="product-img"></td>
-          <td>Wahanda Glide</td>
-          <td>$45</td>
-          <td>39 | 40 | 41 | 42</td>
-        </tr>
-      </tbody>
-    </table>
+    <section>
+      <h6>How to Place an Order</h6>
+      <ol>
+        <li>Choose your preferred shoe from the product list.</li>
+        <li>Note your desired size and price.</li>
+        <li>
+          Send an email to 
+          <a href="mailto:brasilwahanda@gmail.com">brasilwahanda@gmail.com</a> 
+          or call <a href="tel:+254728262874">0728262874</a>.
+        </li>
+        <li>Wait for confirmation and payment instructions.</li>
+        <li>Receive your shoes via delivery or pickup.</li>
+      </ol>
+    </section>
+  </main>
 
-    <h6>How to Place an Order</h6>
-    <ol>
-      <li>Choose your preferred shoe from the product list.</li>
-      <li>Note your desired size and price.</li>
-      <li>
-        Send an email to 
-        <a href="mailto:brasilwahanda@gmail.com">brasilwahanda@gmail.com</a> 
-        or call <a href="tel:+254728262874">0728262874</a>.
-      </li>
-      <li>Wait for confirmation and payment instructions.</li>
-      <li>Receive your shoes via delivery or pickup.</li>
-    </ol>
-  </div>
-
+  <!-- Footer -->
   <footer>
     <div class="footer-links">
-      <a href="Home.html">Home</a>
+      <a href="Index.html">Home</a>
       <a href="Blog.html">Blog</a>
       <a href="About.html">About</a>
       <a href="Contact.html">Contact</a>

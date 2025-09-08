@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wahanda Glide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       background-color: #363636;
-      color: white; /* Improved readability */
+      color: white;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -29,39 +30,14 @@
       text-decoration: underline;
     }
 
-    /* --- Video Container --- */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
-      height: 0;
-      overflow: hidden;
-      margin: 20px auto;
-      max-width: 100%;
-      border-radius: 8px;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
-      border-radius: 8px;
-    }
-
-    video {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 20px auto;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
-
-    /* --- Menu Bar --- */
+    /* --- Navigation --- */
     nav {
       background-color: #333;
       overflow: hidden;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav ul {
@@ -93,46 +69,188 @@
       color: white;
     }
 
-    /* --- Content --- */
+    /* --- Hero Section --- */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url("Images/shoe-banner.jpg") center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #117a65;
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .hero-btn:hover {
+      background-color: #0a5a4d;
+    }
+
+    /* --- Main Content --- */
     main {
-      padding: 40px;
+      padding: 40px 20px;
       text-align: center;
       font-size: 1.1em;
     }
 
+    /* --- Services --- */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+
+    /* --- Product Grid --- */
+    .product-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 40px 0;
+    }
+
+    .product-card {
+      background: #242424;
+      border-radius: 12px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 20px;
+      background-color: #117a65;
+      color: white;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      background-color: #0a5a4d;
+    }
+
+    /* --- Filters --- */
+    .filter-bar {
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .filter-bar input, 
+    .filter-bar select {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background: #2a2a2a;
+      color: white;
+    }
+
+    .filter-bar input::placeholder {
+      color: #bbb;
+    }
+
     /* --- Product Table --- */
     .table-container {
-      overflow-x: auto; /* Makes table scrollable on small screens */
+      overflow-x: auto;
+      margin-top: 30px;
     }
 
     .product-table {
-      margin: 30px auto;
+      margin: 0 auto;
       border-collapse: collapse;
-      width: 80%;
-      color: white;
+      width: 85%;
       min-width: 400px;
+      background: #2a2a2a;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
 
-    .product-table th, .product-table td {
+    .product-table th, 
+    .product-table td {
       border: 1px solid #555;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
     }
 
     .product-table th {
       background-color: #117a65;
       color: white;
+      font-size: 18px;
     }
 
     .product-table tr:nth-child(even) {
-      background-color: #2a2a2a;
+      background-color: #333;
     }
 
     .product-table tr:hover {
       background-color: #444;
     }
 
-    .product-img {
+    .product-table img {
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-table img:hover {
+      transform: scale(1.05);
+    }
+
+    /* --- Video Section --- */
+    .story {
+      margin-top: 60px;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      margin: 20px auto;
+      max-width: 800px;
+      border-radius: 8px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
       border-radius: 8px;
     }
 
@@ -154,6 +272,10 @@
     .footer-links a:hover {
       color: #ffcc00;
     }
+
+    .footer-links i {
+      margin-right: 6px;
+    }
   </style>
 </head>
 <body>
@@ -161,47 +283,84 @@
   <!-- Navigation -->
   <nav>
     <ul>
-      <li><a class="active"href="index.html">index</a></li>
+      <li><a class="active" href="index.html">Home</a></li>
       <li><a href="Blog.html">Blog</a></li>
       <li><a href="About.html">About</a></li>
       <li><a href="Contact.html">Contact</a></li>
     </ul>
   </nav>
 
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Step Into Style</h1>
+      <p>Premium sneakers crafted with comfort & design in mind</p>
+      <a href="#products" class="hero-btn">Shop Now</a>
+    </div>
+  </header>
+
   <!-- Main Content -->
   <main>
     <section>
-      <h1>My Shoe Business</h1>
-      <h2>This is my Homepage</h2>
-      <p>Welcome to my website. This is my first website.</p>
+      <h2>Welcome to My Shoe Business</h2>
+      <p>We specialize in creating stylish, comfortable, and affordable sneakers for everyone.</p>
       <img src="Images/B-Luxury.jpg" width="250" alt="B-Luxury company logo"> 
     </section>
 
     <section>
-      <h3>My Services</h3>
+      <h3>Our Services</h3>
       <ul>
-        <li>Design and Manufacturing</li> 
-        <li>Marketing and Distribution</li> 
-        <li>Custom shoe fitting or repair</li>
+        <li>👟 Design and Manufacturing</li> 
+        <li>📦 Marketing and Distribution</li> 
+        <li>🛠️ Custom shoe fitting and repair</li>
       </ul>
     </section>
 
-    <section>
-      <h4>Our Products</h4>
-      <img src="Images/B-Lux One.png" width="250" alt="B-Lux One premium sneaker"> 
-      <img src="Images/wahanda glide.png" width="250" alt="Wahanda Glide lightweight sneaker">
+    <!-- Product Section -->
+    <section id="products">
+      <h2>Our Products</h2>
 
-      <h5>Our Story</h5>
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/iWI_uBH6R1g?si=bOIYaVyoFyFVhpZr" 
-          title="Wahanda Glide Story - YouTube video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
+      <!-- Product Cards -->
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="Images/B-Lux One.png" alt="B-Lux One premium sneaker">
+          <h3>B-Lux One</h3>
+          <p class="price">$60</p>
+          <a href="Contact.html" class="buy-btn">Order Now</a>
+        </div>
+        <div class="product-card">
+          <img src="Images/wahanda glide.png" alt="Wahanda Glide lightweight sneaker">
+          <h3>Wahanda Glide</h3>
+          <p class="price">$45</p>
+          <a href="Contact.html" class="buy-btn">Order Now</a>
+        </div>
       </div>
 
+      <!-- Search & Filters -->
+      <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        
+        <select id="sizeFilter">
+          <option value="">Filter by Size</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+        </select>
+
+        <select id="priceFilter">
+          <option value="">Filter by Price</option>
+          <option value="low">Below $50</option>
+          <option value="mid">$50 - $60</option>
+          <option value="high">Above $60</option>
+        </select>
+      </div>
+
+      <!-- Product Table -->
       <div class="table-container">
-        <table class="product-table">
+        <table class="product-table" id="productTable">
           <thead>
             <tr>
               <th>Image</th>
@@ -212,13 +371,13 @@
           </thead>
           <tbody>
             <tr>
-              <td><img src="Images/B-Lux One.png" width="150" alt="B-Lux One sneaker" class="product-img"></td>
+              <td><img src="Images/B-Lux One.png" width="120" alt="B-Lux One sneaker" class="product-img"></td>
               <td>B-Lux One</td>
               <td>$60</td>
               <td>40 | 41 | 42 | 43 | 44</td>
             </tr>
             <tr>
-              <td><img src="Images/wahanda glide.png" width="150" alt="Wahanda Glide sneaker" class="product-img"></td>
+              <td><img src="Images/wahanda glide.png" width="120" alt="Wahanda Glide sneaker" class="product-img"></td>
               <td>Wahanda Glide</td>
               <td>$45</td>
               <td>39 | 40 | 41 | 42</td>
@@ -228,8 +387,22 @@
       </div>
     </section>
 
+    <!-- Video Section -->
+    <section class="story">
+      <h2>Our Story</h2>
+      <p>Discover how Wahanda Glide started and what drives our passion for sneakers.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/iWI_uBH6R1g?si=bOIYaVyoFyFVhpZr" 
+          title="Wahanda Glide Story - YouTube video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Order Instructions -->
     <section>
-      <h6>How to Place an Order</h6>
+      <h3>How to Place an Order</h3>
       <ol>
         <li>Choose your preferred shoe from the product list.</li>
         <li>Note your desired size and price.</li>
@@ -247,15 +420,57 @@
   <!-- Footer -->
   <footer>
     <div class="footer-links">
-      <a href="Index.html">Home</a>
-      <a href="Blog.html">Blog</a>
-      <a href="About.html">About</a>
-      <a href="Contact.html">Contact</a>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="Blog.html"><i class="fas fa-blog"></i> Blog</a>
+      <a href="About.html"><i class="fas fa-user"></i> About</a>
+      <a href="Contact.html"><i class="fas fa-envelope"></i> Contact</a>
     </div>
-    <p>© 2025 My Shoe Business</p>
+    <p>© 2025 My Shoe Business | Made with ❤️</p>
   </footer>
+
+  <!-- JavaScript for Filters -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const sizeFilter = document.getElementById("sizeFilter");
+    const priceFilter = document.getElementById("priceFilter");
+    const productTable = document.getElementById("productTable").getElementsByTagName("tbody")[0];
+    const rows = productTable.getElementsByTagName("tr");
+
+    function filterTable() {
+      const searchValue = searchInput.value.toLowerCase();
+      const sizeValue = sizeFilter.value;
+      const priceValue = priceFilter.value;
+
+      for (let row of rows) {
+        const product = row.cells[1].textContent.toLowerCase();
+        const price = parseInt(row.cells[2].textContent.replace("$", ""));
+        const sizes = row.cells[3].textContent;
+
+        let show = true;
+
+        // Search filter
+        if (!product.includes(searchValue)) {
+          show = false;
+        }
+
+        // Size filter
+        if (sizeValue && !sizes.includes(sizeValue)) {
+          show = false;
+        }
+
+        // Price filter
+        if (priceValue === "low" && price >= 50) show = false;
+        if (priceValue === "mid" && (price < 50 || price > 60)) show = false;
+        if (priceValue === "high" && price <= 60) show = false;
+
+        row.style.display = show ? "" : "none";
+      }
+    }
+
+    searchInput.addEventListener("keyup", filterTable);
+    sizeFilter.addEventListener("change", filterTable);
+    priceFilter.addEventListener("change", filterTable);
+  </script>
 
 </body>
 </html>
-
-

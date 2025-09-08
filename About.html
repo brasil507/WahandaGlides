@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Shoe Business</title>
+  <title>About Us - BW Footwear</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       background-color: #363636;
-      color: #000000;
+      color: white;
     }
 
-    h1, h3, h4, h5 {
+    h1, h2, h3, h4 {
       color: #b0f4ff;
     }
 
     p {
       font-size: 18px;
-      color: white;
+      line-height: 1.6;
     }
 
     a {
@@ -66,43 +66,114 @@
       color: white;
     }
 
+    /* --- Hero Section --- */
+    .hero {
+      background: linear-gradient(to right, #000, #117a65);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+    }
+
     /* --- Content --- */
     .content {
       padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* --- Mission & Vision --- */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .card {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .card h3 {
+      color: #ffcc00;
+    }
+
+    /* --- Timeline --- */
+    .timeline {
+      position: relative;
+      margin: 50px 0;
+      padding-left: 40px;
+      border-left: 3px solid #117a65;
+    }
+
+    .timeline-item {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      background: #ffcc00;
+      border-radius: 50%;
+      border: 2px solid #117a65;
+    }
+
+    .timeline-item h4 {
+      margin: 0;
+      color: #ffcc00;
+    }
+
+    .timeline-item p {
+      margin: 5px 0 0;
+    }
+
+    /* --- Founder Section --- */
+    .founder {
       text-align: center;
-      font-size: 1.2em;
-      color: #fff;
+      margin: 50px 0;
     }
 
-    /* --- Product Table --- */
-    .product-table {
-      margin: 30px auto;
-      border-collapse: collapse;
-      width: 80%;
-      color: white;
+    .founder img {
+      width: 150px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #117a65;
     }
 
-    .product-table th, .product-table td {
-      border: 1px solid #555;
-      padding: 10px;
+    /* --- CTA --- */
+    .cta {
       text-align: center;
+      margin: 40px 0;
     }
 
-    .product-table th {
-      background-color: #117a65;
+    .cta a {
+      background: #117a65;
+      padding: 12px 25px;
+      border-radius: 6px;
       color: white;
+      font-weight: bold;
+      transition: background 0.3s ease;
     }
 
-    .product-table tr:nth-child(even) {
-      background-color: #2a2a2a;
-    }
-
-    .product-table tr:hover {
-      background-color: #444;
-    }
-
-    .product-img {
-      border-radius: 8px;
+    .cta a:hover {
+      background: #ffcc00;
+      color: black;
     }
 
     /* --- Footer --- */
@@ -110,7 +181,6 @@
       text-align: center;
       padding: 20px;
       background-color: #242424;
-      color: white;
       margin-top: 40px;
     }
 
@@ -129,44 +199,72 @@
   <!-- Navigation Menu -->
   <nav>
     <ul>
-      <li><a class="active"href="index.html">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="Blog.html">Blog</a></li>
-      <li><a href="About.html">About</a></li>
+      <li><a class="active" href="About.html">About</a></li>
       <li><a href="Contact.html">Contact</a></li>
     </ul>
   </nav>
 
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>About Us</h1>
+    <p>Discover the story behind <strong>BW Footwear</strong> – where performance meets royalty.</p>
+  </section>
+
   <!-- Main Content -->
   <div class="content">
-    <h1>Welcome to my website. This is my first website.</h1>
-    <h2>I am a student at Daystar University.</h2>
-    <p>My name is Brasil Wahanda and this is my brand.</p>
-
-    <img src="Images/B-Luxury.jpg" width="250" alt="B-Luxury Logo"> 
-
-    <h3>Story</h3>
-    <iframe width="560" height="315"
-      src="https://www.youtube.com/embed/iWI_uBH6R1g?si=bOIYaVyoFyFVhpZr"
-      title="YouTube video player" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-    </iframe>
-
-    <h4>Our Products</h4>
-    <img src="Images/B-Lux One.png" width="250" alt="B-Lux One"> 
-    <img src="Images/wahanda glide.png" width="250" alt="Wahanda Glide">
-
-    <h5>About</h5>
+    <h2>Our Story</h2>
     <p>“BW” is a footwear brand that seamlessly blends athletic performance with a regal aesthetic. 
        The brand is a fusion of Brazilian energy and sophisticated style. The logo even features a crown.</p>
 
-    <p>Our shoes are engineered for comfort and performance. 
-       Featuring black and gold colours together, they inspire royal heritage 
-       and ensure that every step you take is one of power and grace.</p>
+    <p>Our shoes are engineered for comfort and performance. Featuring black and gold colours together, 
+       they inspire royal heritage and ensure that every step you take is one of power and grace.</p>
 
     <p>“BW” is for those who demand excellence in both form and function. 
        More than just a shoe, it is a symbol of a lifestyle that is both active and luxurious. 
        Step into a world where every stride is a testament to your inner royalty.</p>
+
+    <!-- Mission & Vision -->
+    <div class="cards">
+      <div class="card">
+        <h3>Our Mission</h3>
+        <p>To design footwear that empowers people with confidence, comfort, and style.</p>
+      </div>
+      <div class="card">
+        <h3>Our Vision</h3>
+        <p>To become a leading African footwear brand recognized globally for quality and innovation.</p>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <h2>Our Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>2024 – Founded</h4>
+        <p>Brasil Wahanda founded BW Footwear with a vision of blending luxury and performance.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2025 – First Collection</h4>
+        <p>Launched <em>Wahanda Glide</em> and <em>B-Lux One</em>, marking the brand’s official debut.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Future – Expansion</h4>
+        <p>BW Footwear aims to expand across Africa and reach international markets.</p>
+      </div>
+    </div>
+
+    <!-- Founder Section -->
+    <div class="founder">
+      <img src="Images/B-Luxury.jpg" alt="Brasil Wahanda - Founder">
+      <h3>Brasil Wahanda</h3>
+      <p>Founder & Creative Director, BW Footwear</p>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta">
+      <a href="Contact.html">Get in Touch</a>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -179,8 +277,4 @@
   </footer>
 
 </body>
-
 </html>
-
-
-

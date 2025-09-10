@@ -419,95 +419,110 @@
   </footer>
 
   <script>
-    const searchBar = document.getElementById("searchBar");
-    const filterDropdown = document.getElementById("filterCategory");
-    const cards = document.querySelectorAll(".product-card");
-    const cartInfo = document.getElementById("cartInfo");
-    const cartPanel = document.getElementById("cartPanel");
-    const cartList = cartPanel.querySelector("ul");
-    let cartItems = [];
+  const searchBar = document.getElementById("searchBar");
+  const filterDropdown = document.getElementById("filterCategory");
+  const cards = document.querySelectorAll(".product-card");
+  const cartInfo = document.getElementById("cartInfo");
+  const cartPanel = document.getElementById("cartPanel");
+  const cartList = cartPanel.querySelector("ul");
+  let cartItems = [];
 
-    function applyFilters() {
-      const searchText = searchBar.value.toLowerCase();
-      const category = filterDropdown.value;
+  function applyFilters() {
+    const searchText = searchBar.value.toLowerCase();
+    const category = filterDropdown.value;
 
-      cards.forEach(card => {
-        const nameEl = card.querySelector("h3");
-        const descEl = card.querySelector("p");
-        const name = nameEl.textContent.toLowerCase();
-        const desc = descEl.textContent.toLowerCase();
-        const cardCategory = card.getAttribute("data-category");
+    cards.forEach(card => {
+      const nameEl = card.querySelector("h3");
+      const descEl = card.querySelector("p");
+      const name = nameEl.textContent.toLowerCase();
+      const desc = descEl.textContent.toLowerCase();
+      const cardCategory = card.getAttribute("data-category");
 
-        const matchesSearch = name.includes(searchText) || desc.includes(searchText);
-        const matchesCategory = (category === "all" || category === cardCategory);
+      const matchesSearch = name.includes(searchText) || desc.includes(searchText);
+      const matchesCategory = (category === "all" || category === cardCategory);
 
-        if(matchesSearch && matchesCategory) {
-          card.style.display = "block";
-          card.classList.remove("hide");
+      if(matchesSearch && matchesCategory) {
+        card.style.display = "block";
+        card.classList.remove("hide");
 
-          if(searchText !== "") {
-            const regex = new RegExp(`(${searchText})`, "gi");
-            nameEl.innerHTML = nameEl.textContent.replace(regex, "<mark>$1</mark>");
-            descEl.innerHTML = descEl.textContent.replace(regex, "<mark>$1</mark>");
-          } else {
-            nameEl.innerHTML = nameEl.textContent;
-            descEl.innerHTML = descEl.textContent;
-          }
-
+        if(searchText !== "") {
+          const regex = new RegExp(`(${searchText})`, "gi");
+          nameEl.innerHTML = nameEl.textContent.replace(regex, "<mark>$1</mark>");
+          descEl.innerHTML = descEl.textContent.replace(regex, "<mark>$1</mark>");
         } else {
-          card.classList.add("hide");
+          nameEl.innerHTML = nameEl.textContent;
+          descEl.innerHTML = descEl.textContent;
         }
-      });
-    }
 
-    searchBar.addEventListener("input", applyFilters);
-    filterDropdown.addEventListener("change", applyFilters);
-
-    document.querySelectorAll('nav ul li a').forEach(link => {
-      if(link.getAttribute('href') === window.location.pathname.split("/").pop()){
-        link.classList.add('active');
+      } else {
+        card.classList.add("hide");
       }
     });
+  }
 
-    // Cart functionality
-    function updateCart() {
-      cartInfo.textContent = `Cart: ${cartItems.length} items`;
-      cartList.innerHTML = '';
-      cartItems.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        const removeBtn = document.createElement("button");
-        removeBtn.textContent = "X";
-        removeBtn.addEventListener("click", () => {
-          cartItems.splice(index, 1);
-          updateCart();
-        });
-        li.appendChild(removeBtn);
-        cartList.appendChild(li);
-      });
+  searchBar.addEventListener("input", applyFilters);
+  filterDropdown.addEventListener("change", applyFilters);
+
+  document.querySelectorAll('nav ul li a').forEach(link => {
+    if(link.getAttribute('href') === window.location.pathname.split("/").pop()){
+      link.classList.add('active');
     }
+  });
 
-    document.querySelectorAll(".product-card button:not(.wishlist-btn)").forEach(btn => {
-      btn.classList.add("active");
-      btn.addEventListener("click", (e) => {
-        const productName = e.target.parentElement.querySelector("h3").textContent;
-        if(!cartItems.includes(productName)) {
-          cartItems.push(productName);
-          updateCart();
-        }
+  // Cart functionality with Buy Now
+  function updateCart() {
+    cartInfo.textContent = `Cart: ${cartItems.length} items`;
+    cartList.innerHTML = '';
+    cartItems.forEach((item, index) => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      
+      // Remove button
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "X";
+      removeBtn.addEventListener("click", () => {
+        cartItems.splice(index, 1);
+        updateCart();
       });
-    });
 
-    document.querySelectorAll(".wishlist-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        btn.classList.toggle("active");
+      // Buy Now button
+      const buyNowBtn = document.createElement("button");
+      buyNowBtn.textContent = "Buy Now";
+      buyNowBtn.style.backgroundColor = "#04AA6D";
+      buyNowBtn.style.marginLeft = "5px";
+      buyNowBtn.addEventListener("click", () => {
+        const subject = encodeURIComponent("Order Request");
+        const body = encodeURIComponent(`I want to buy the product: ${item}`);
+        window.location.href = `mailto:brasilwahanda@gmail.com?subject=${subject}&body=${body}`;
       });
-    });
 
-    cartInfo.addEventListener("click", () => {
-      cartPanel.style.display = cartPanel.style.display === "block" ? "none" : "block";
+      li.appendChild(buyNowBtn);
+      li.appendChild(removeBtn);
+      cartList.appendChild(li);
     });
-  </script>
+  }
+
+  document.querySelectorAll(".product-card button:not(.wishlist-btn)").forEach(btn => {
+    btn.classList.add("active");
+    btn.addEventListener("click", (e) => {
+      const productName = e.target.parentElement.querySelector("h3").textContent;
+      if(!cartItems.includes(productName)) {
+        cartItems.push(productName);
+        updateCart();
+      }
+    });
+  });
+
+  document.querySelectorAll(".wishlist-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("active");
+    });
+  });
+
+  cartInfo.addEventListener("click", () => {
+    cartPanel.style.display = cartPanel.style.display === "block" ? "none" : "block";
+  });
+</script>
 
 </body>
 </html>

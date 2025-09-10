@@ -30,43 +30,8 @@
     a:hover {
       text-decoration: underline;
     }
-/* --- Menu Bar --- */
-    nav {
-      background-color: #333;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    nav ul li {
-      display: inline-block;
-    }
-
-    nav ul li a {
-      display: block;
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      background-color: #242424;
-      color: #ffcc00;
-    }
-
-    nav ul li a.active {
-      background-color: #04AA6D;
-      color: white;
-    }
-
-    /* --- Navigation --- */
+    /* --- Menu Bar --- */
     nav {
       background-color: #333;
       overflow: hidden;
@@ -143,7 +108,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 30px auto;
       padding: 10px;
     }
@@ -168,6 +133,14 @@
 
     .feedback em {
       color: #b0f4ff;
+    }
+
+    .feedback img {
+      border-radius: 8px;
+      margin-bottom: 10px;
+      width: 100%;
+      max-width: 220px;
+      display: block;
     }
 
     .stars {
@@ -235,10 +208,19 @@
       margin: 0 12px;
       color: #b0f4ff;
       font-weight: 500;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
     }
 
     .footer-links a:hover {
       color: #ffcc00;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .footer-links a.active {
+      text-decoration: underline;
+      color: #ffcc00;
+      font-weight: bold;
     }
 
     .footer-links i {
@@ -251,7 +233,8 @@
   <!-- Navigation -->
   <nav>
     <ul>
-      <li><a class="active" href="index.html">Home</a></li>
+       <li><a href="index.html">Home</a></li>
+	  <li><a href="Products.html">Products</a></li>
       <li><a href="Blog.html">Blog</a></li>
       <li><a href="About.html">About</a></li>
       <li><a href="Contact.html">Contact</a></li>
@@ -271,26 +254,115 @@
 
     <h3>Customer Feedback</h3>
 
-    <!-- Existing Feedback -->
-    <div class="feedback-container" id="feedbackContainer">
-      <div class="feedback">
-        <p><strong>Dal</strong> (Joined: October 3, 2024)</p>
-        <p>"The shoes are good and they are actually comfier than I thought."</p>
-        <div class="stars">⭐⭐⭐⭐</div>
-      </div>
+    <!-- Feedback Reviews -->
+<div class="feedback-container" id="feedbackContainer">
 
-      <div class="feedback">
-        <p><strong>Matthew</strong> (Joined: November 12, 2024)</p>
-        <p>"The shoes were nice! I liked the traditional patterns and the name of the shoes is catchy: <em>Wahanda Glide</em>."</p>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-      </div>
+  <div class="feedback">
+    <img src="Images/Converse black.png" alt="Classic Converse-style black sneaker">
+    <p><strong>Dal</strong> (Joined: October 3, 2024)</p>
+    <p>"The shoes are good and they are actually comfier than I thought."</p>
+    <div class="stars">⭐⭐⭐⭐</div>
+  </div>
 
-      <div class="feedback">
-        <p><strong>Isaiah</strong> (Joined: January 8, 2025)</p>
-        <p>"The black-gold looks good and you can match it with any outfit. The design is just WOW!!"</p>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-      </div>
-    </div>
+  <div class="feedback">
+    <img src="Images/wahanda glide.png" alt="Wahanda Glide branded sneaker">
+    <p><strong>Matthew</strong> (Joined: November 12, 2024)</p>
+    <p>"The shoes were nice! I liked the traditional patterns and the name of the shoes is catchy: <em>Wahanda Glide</em>."</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/B-Lux One.png" alt="Black and gold luxury sneaker">
+    <p><strong>Isaiah</strong> (Joined: January 8, 2025)</p>
+    <p>"The black-gold looks good and you can match it with any outfit. The design is just WOW!!"</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Street Style.png" alt="Street style casual sneaker">
+    <p><strong>Kevin</strong> (Joined: February 2, 2025)</p>
+    <p>"I got the Street Style sneakers, and they are perfect for casual wear. Super comfy and stylish!"</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Urban Flex.png" alt="Urban Flex versatile sneaker">
+    <p><strong>Linda</strong> (Joined: January 25, 2025)</p>
+    <p>"The Urban Flex is so versatile. I can rock them with jeans or even joggers. Love them!"</p>
+    <div class="stars">⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Jordan Orlo Eclipse.png" alt="Jordan-style Eclipse sneaker">
+    <p><strong>Brian</strong> (Joined: December 14, 2024)</p>
+    <p>"I grabbed the Jordan Orlo Eclipse style sneakers — they really turn heads. Totally worth it!"</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Air Force 1.png" alt="Classic Air Force 1 sneaker">
+    <p><strong>Sophia</strong> (Joined: November 29, 2024)</p>
+    <p>"The Air Force style sneakers are 🔥🔥. They fit great and look fresh with every outfit."</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Onyx Apex.png" alt="Minimalist classic white sneaker">
+    <p><strong>James</strong> (Joined: October 20, 2024)</p>
+    <p>"Classic White never disappoints. Clean design and goes well with everything."</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Red Runner.png" alt="Bold red running sneaker">
+    <p><strong>Alicia</strong> (Joined: September 8, 2024)</p>
+    <p>"The Red Runners are so bold! I get compliments every time I wear them."</p>
+    <div class="stars">⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Blue wave.png" alt="Blue Wave lightweight sneaker">
+    <p><strong>Daniel</strong> (Joined: August 15, 2024)</p>
+    <p>"Blue Wave sneakers are lightweight and very comfortable for daily walks."</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Eco Flux.png" alt="Eco-friendly green energy sneaker">
+    <p><strong>Michelle</strong> (Joined: July 5, 2024)</p>
+    <p>"Love the eco-vibe of Green Energy sneakers. Super cool color and durable too."</p>
+    <div class="stars">⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Golden-Glide.png" alt="Golden Glide premium sneaker">
+    <p><strong>Chris</strong> (Joined: June 2, 2024)</p>
+    <p>"Golden Glide looks premium! I feel like a star whenever I step out in them."</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Night Rider.png" alt="Sleek Night Rider sneaker">
+    <p><strong>Nancy</strong> (Joined: May 18, 2024)</p>
+    <p>"The Night Rider sneakers are sleek and perfect for night outings. So comfy too."</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Stride Rite.png" alt="Retro-inspired Stride Rite sneaker">
+    <p><strong>Victor</strong> (Joined: April 3, 2024)</p>
+    <p>"Retro Vibe is the best throwback design I’ve owned. Unique and stylish."</p>
+    <div class="stars">⭐⭐⭐⭐</div>
+  </div>
+
+  <div class="feedback">
+    <img src="Images/Sports Max.png" alt="Sports Max athletic sneaker">
+    <p><strong>Emily</strong> (Joined: March 10, 2024)</p>
+    <p>"Sport Max sneakers are great for workouts. Light, comfy, and very durable."</p>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+  </div>
+
+</div>
 
     <!-- Feedback Form -->
     <div class="feedback-form">
@@ -319,19 +391,21 @@
     </div>
   </div>
 
-  <!-- Footer -->
+   <!-- Footer -->
   <footer>
     <div class="footer-links">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
+	  <a href="Products.html"><i class="fas fa-products"></i>Products</a>
       <a href="Blog.html"><i class="fas fa-blog"></i> Blog</a>
       <a href="About.html"><i class="fas fa-user"></i> About</a>
       <a href="Contact.html"><i class="fas fa-envelope"></i> Contact</a>
     </div>
-    <p>© 2025 My Shoe Business | Built with ❤️</p>
+    <p>&copy; 2025 B-LUX ONE LIMITED. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript for Feedback Form -->
+  <!-- JavaScript -->
   <script>
+    // Feedback form
     const reviewForm = document.getElementById("reviewForm");
     const feedbackContainer = document.getElementById("feedbackContainer");
 
@@ -343,7 +417,6 @@
       const rating = document.getElementById("rating").value;
       const comment = document.getElementById("comment").value;
 
-      // Create new feedback card
       const newFeedback = document.createElement("div");
       newFeedback.classList.add("feedback");
       newFeedback.innerHTML = `
@@ -352,14 +425,20 @@
         <div class="stars">${"⭐".repeat(rating)}</div>
       `;
 
-      // Add it at the top of feedbacks
       feedbackContainer.prepend(newFeedback);
-
-      // Reset form
       reviewForm.reset();
+    });
+
+    // Highlight active nav link (header + footer)
+    const currentPage = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll("nav ul li a, .footer-links a");
+
+    navLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+      }
     });
   </script>
 
 </body>
 </html>
-

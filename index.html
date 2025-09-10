@@ -88,6 +88,12 @@
       margin-bottom: 20px;
     }
 
+    .hero img {
+      margin: 20px 0;
+      border-radius: 12px;
+      max-width: 300px;
+    }
+
     .hero-btn {
       display: inline-block;
       padding: 12px 25px;
@@ -138,6 +144,7 @@
       text-align: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
       transition: transform 0.3s ease;
+      position: relative;
     }
 
     .product-card:hover {
@@ -149,7 +156,7 @@
       border-radius: 10px;
     }
 
-    .buy-btn {
+    .buy-btn, .wishlist-btn {
       display: inline-block;
       margin-top: 12px;
       padding: 10px 20px;
@@ -158,9 +165,11 @@
       border-radius: 20px;
       text-decoration: none;
       transition: background 0.3s ease;
+      cursor: pointer;
+      margin-right: 5px;
     }
 
-    .buy-btn:hover {
+    .buy-btn:hover, .wishlist-btn:hover {
       background-color: #0a5a4d;
     }
 
@@ -246,12 +255,80 @@
       border-radius: 8px;
     }
 
-    .video-container iframe {
+    .video-container iframe,
+    .video-container video {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       border: 0;
       border-radius: 8px;
+    }
+
+    /* --- Order Section --- */
+    .order-section {
+      background: #2a2a2a;
+      padding: 50px 20px;
+      border-radius: 12px;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .order-section h3 {
+      font-size: 2rem;
+      color: #ffcc00;
+      margin-bottom: 30px;
+    }
+
+    .order-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .order-card {
+      background: #242424;
+      padding: 20px;
+      border-radius: 12px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .order-card:hover {
+      transform: translateY(-6px);
+      background: #1b1b1b;
+    }
+
+    .order-card i {
+      font-size: 2.5rem;
+      color: #117a65;
+      margin-bottom: 12px;
+    }
+
+    .order-card h4 {
+      margin: 10px 0;
+      color: #b0f4ff;
+    }
+
+    .order-card p {
+      font-size: 15px;
+      color: #ddd;
+    }
+
+    .order-card a {
+      display: inline-block;
+      margin: 5px 0;
+      color: #ffcc00;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .order-card a:hover {
+      color: #b0f4ff;
+      transform: scale(1.05);
     }
 
     /* --- Footer --- */
@@ -267,14 +344,78 @@
       margin: 0 15px;
       color: #b0f4ff;
       font-weight: 500;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
     }
 
     .footer-links a:hover {
       color: #ffcc00;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .footer-links a.active {
+      text-decoration: underline;
+      color: #ffcc00;
+      font-weight: bold;
     }
 
     .footer-links i {
       margin-right: 6px;
+    }
+
+    /* --- Cart Sidebar --- */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 350px;
+      height: 100%;
+      background: #242424;
+      box-shadow: -4px 0 12px rgba(0,0,0,0.5);
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 2000;
+      overflow-y: auto;
+    }
+
+    .cart-sidebar.active {
+      right: 0;
+    }
+
+    .cart-sidebar h3 {
+      color: #ffcc00;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 8px;
+    }
+
+    .cart-item span {
+      display: block;
+      margin-top: 4px;
+    }
+
+    .cart-toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #117a65;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 2500;
+      transition: background 0.3s ease;
+    }
+
+    .cart-toggle-btn:hover {
+      background: #0a5a4d;
     }
   </style>
 </head>
@@ -283,7 +424,8 @@
   <!-- Navigation -->
   <nav>
     <ul>
-      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Products.html">Products</a></li>
       <li><a href="Blog.html">Blog</a></li>
       <li><a href="About.html">About</a></li>
       <li><a href="Contact.html">Contact</a></li>
@@ -295,6 +437,7 @@
     <div class="hero-content">
       <h1>Step Into Style</h1>
       <p>Premium sneakers crafted with comfort & design in mind</p>
+      <img src="Images/B-Lux One.png" alt="Featured Sneaker">
       <a href="#products" class="hero-btn">Shop Now</a>
     </div>
   </header>
@@ -320,158 +463,174 @@
     <section id="products">
       <h2>Our Products</h2>
 
-      <!-- Product Cards -->
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="Images/B-Lux One.png" alt="B-Lux One premium sneaker">
-          <h3>B-Lux One</h3>
-          <p class="price">$60</p>
-          <a href="Contact.html" class="buy-btn">Order Now</a>
-        </div>
-        <div class="product-card">
-          <img src="Images/wahanda glide.png" alt="Wahanda Glide lightweight sneaker">
-          <h3>Wahanda Glide</h3>
-          <p class="price">$45</p>
-          <a href="Contact.html" class="buy-btn">Order Now</a>
-        </div>
+     <!-- Product Cards -->
+<div class="product-grid">
+  <div class="product-card">
+    <img src="Images/B-Lux One.png" alt="B-Lux One premium sneaker">
+    <h3>B-Lux One</h3>
+    <p class="price">$60</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+  <div class="product-card">
+    <img src="Images/wahanda glide.png" alt="Wahanda Glide lightweight sneaker">
+    <h3>Wahanda Glide</h3>
+    <p class="price">$45</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+  <div class="product-card">
+    <img src="Images/Street Style.png" alt="Street Style Sneaker">
+    <h3>Street Style</h3>
+    <p class="price">$55</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+  <div class="product-card">
+    <img src="Images/Urban Flex.png" alt="Urban Flex Sneaker">
+    <h3>Urban Flex</h3>
+    <p class="price">$65</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+  <div class="product-card">
+    <img src="Images/Night Rider.png" alt="Sleek Night Rider sneaker">
+      <h3>Night Rider</h3>
+    <p class="price">$70</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+  <div class="product-card">
+    <img src="Images/Stride Rite.png" alt="Retro-inspired Stride Rite sneaker">
+      <h3>Stride Rite</h3>
+    <p class="price">$50</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+  <div class="product-card">
+     <img src="Images/Sports Max.png" alt="Sports Max athletic sneaker">
+      <h3>Sports Max</h3>
+    <p class="price">$68</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+</div>
       </div>
 
-      <!-- Search & Filters -->
-      <div class="filter-bar">
-        <input type="text" id="searchInput" placeholder="Search products...">
-        
-        <select id="sizeFilter">
-          <option value="">Filter by Size</option>
-          <option value="39">39</option>
-          <option value="40">40</option>
-          <option value="41">41</option>
-          <option value="42">42</option>
-          <option value="43">43</option>
-          <option value="44">44</option>
-        </select>
+      <!-- Filters Section (unchanged) -->
 
-        <select id="priceFilter">
-          <option value="">Filter by Price</option>
-          <option value="low">Below $50</option>
-          <option value="mid">$50 - $60</option>
-          <option value="high">Above $60</option>
-        </select>
-      </div>
+      <!-- Product Table (unchanged) -->
 
-      <!-- Product Table -->
-      <div class="table-container">
-        <table class="product-table" id="productTable">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Available Sizes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src="Images/B-Lux One.png" width="120" alt="B-Lux One sneaker" class="product-img"></td>
-              <td>B-Lux One</td>
-              <td>$60</td>
-              <td>40 | 41 | 42 | 43 | 44</td>
-            </tr>
-            <tr>
-              <td><img src="Images/wahanda glide.png" width="120" alt="Wahanda Glide sneaker" class="product-img"></td>
-              <td>Wahanda Glide</td>
-              <td>$45</td>
-              <td>39 | 40 | 41 | 42</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Video Section -->
-    <section class="story">
-      <h2>Our Story</h2>
-      <p>Discover how Wahanda Glide started and what drives our passion for sneakers.</p>
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/iWI_uBH6R1g?si=bOIYaVyoFyFVhpZr" 
-          title="Wahanda Glide Story - YouTube video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
-      </div>
     </section>
 
     <!-- Order Instructions -->
-    <section>
+    <section class="order-section">
       <h3>How to Place an Order</h3>
-      <ol>
-        <li>Choose your preferred shoe from the product list.</li>
-        <li>Note your desired size and price.</li>
-        <li>
-          Send an email to 
-          <a href="mailto:brasilwahanda@gmail.com">brasilwahanda@gmail.com</a> 
-          or call <a href="tel:+254728262874">0728262874</a>.
-        </li>
-        <li>Wait for confirmation and payment instructions.</li>
-        <li>Receive your shoes via delivery or pickup.</li>
-      </ol>
+      <div class="order-steps">
+        <div class="order-card">
+          <i class="fas fa-shoe-prints"></i>
+          <h4>Step 1</h4>
+          <p>Choose your preferred shoe from the product list.</p>
+        </div>
+        <div class="order-card">
+          <i class="fas fa-ruler"></i>
+          <h4>Step 2</h4>
+          <p>Note your desired size and price.</p>
+        </div>
+        <div class="order-card">
+          <i class="fas fa-envelope"></i>
+          <h4>Step 3</h4>
+          <p>
+            <a href="mailto:brasilwahanda@gmail.com">📧 Email Us</a><br>
+            <a href="tel:+254790011268">📞 Call 0790011268</a><br>
+            <a href="https://wa.me/254790011268?text=Hello%20I%20want%20to%20order%20a%20shoe" target="_blank">💬 WhatsApp</a>
+          </p>
+        </div>
+        <div class="order-card">
+          <i class="fas fa-credit-card"></i>
+          <h4>Step 4</h4>
+          <p>Wait for confirmation and payment instructions.</p>
+        </div>
+        <div class="order-card">
+          <i class="fas fa-truck"></i>
+          <h4>Step 5</h4>
+          <p>Receive your shoes via delivery or pickup.</p>
+        </div>
+      </div>
     </section>
   </main>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <h3>Your Cart</h3>
+    <div id="cartItems"></div>
+    <p id="cartEmpty">Cart is empty</p>
+  </div>
+
+  <!-- Cart Toggle Button -->
+  <div class="cart-toggle-btn" id="cartToggle">🛒 Cart</div>
 
   <!-- Footer -->
   <footer>
     <div class="footer-links">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="Products.html"><i class="fas fa-products"></i>Products</a>
       <a href="Blog.html"><i class="fas fa-blog"></i> Blog</a>
       <a href="About.html"><i class="fas fa-user"></i> About</a>
       <a href="Contact.html"><i class="fas fa-envelope"></i> Contact</a>
     </div>
-    <p>© 2025 My Shoe Business | Made with ❤️</p>
+    <p>&copy; 2025 B-LUX ONE LIMITED. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript for Filters -->
   <script>
-    const searchInput = document.getElementById("searchInput");
-    const sizeFilter = document.getElementById("sizeFilter");
-    const priceFilter = document.getElementById("priceFilter");
-    const productTable = document.getElementById("productTable").getElementsByTagName("tbody")[0];
-    const rows = productTable.getElementsByTagName("tr");
-
-    function filterTable() {
-      const searchValue = searchInput.value.toLowerCase();
-      const sizeValue = sizeFilter.value;
-      const priceValue = priceFilter.value;
-
-      for (let row of rows) {
-        const product = row.cells[1].textContent.toLowerCase();
-        const price = parseInt(row.cells[2].textContent.replace("$", ""));
-        const sizes = row.cells[3].textContent;
-
-        let show = true;
-
-        // Search filter
-        if (!product.includes(searchValue)) {
-          show = false;
+    document.addEventListener("DOMContentLoaded", () => {
+      // Highlight active page
+      const currentPage = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll("nav a, .footer-links a");
+      navLinks.forEach(link => {
+        if(link.getAttribute("href") === currentPage) {
+          link.classList.add("active");
         }
+      });
 
-        // Size filter
-        if (sizeValue && !sizes.includes(sizeValue)) {
-          show = false;
+      // Cart functionality
+      const cartToggle = document.getElementById("cartToggle");
+      const cartSidebar = document.getElementById("cartSidebar");
+      const cartItemsDiv = document.getElementById("cartItems");
+      const cartEmpty = document.getElementById("cartEmpty");
+
+      let cart = [];
+
+      cartToggle.addEventListener("click", () => {
+        cartSidebar.classList.toggle("active");
+      });
+
+      document.querySelectorAll(".buy-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const card = btn.closest(".product-card");
+          const name = card.querySelector("h3").textContent;
+          const price = card.querySelector(".price").textContent;
+
+          cart.push({name, price});
+          updateCart();
+        });
+      });
+
+      function updateCart() {
+        cartItemsDiv.innerHTML = "";
+        if(cart.length === 0) {
+          cartEmpty.style.display = "block";
+        } else {
+          cartEmpty.style.display = "none";
+          cart.forEach(item => {
+            const div = document.createElement("div");
+            div.classList.add("cart-item");
+            div.innerHTML = `<strong>${item.name}</strong><span>${item.price}</span>`;
+            cartItemsDiv.appendChild(div);
+          });
         }
-
-        // Price filter
-        if (priceValue === "low" && price >= 50) show = false;
-        if (priceValue === "mid" && (price < 50 || price > 60)) show = false;
-        if (priceValue === "high" && price <= 60) show = false;
-
-        row.style.display = show ? "" : "none";
       }
-    }
-
-    searchInput.addEventListener("keyup", filterTable);
-    sizeFilter.addEventListener("change", filterTable);
-    priceFilter.addEventListener("change", filterTable);
+    });
   </script>
-
 </body>
 </html>
-

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - BW Footwear</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #ffcc00;
+      margin: 20px 0;
+    }
+
+    nav {
+      background-color: #117a65;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline-block;
+    }
+
+    nav ul li a {
+      display: block;
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #242424;
+      color: #ffcc00;
+    }
+
+    nav ul li a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .controls {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .controls input, .controls select {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin: 5px;
+      font-size: 1rem;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+      flex: 1 0 auto;
+    }
+
+    .product-card {
+      background: #222;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+      opacity: 1;
+      position: relative;
+    }
+
+    .product-card.hide {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      color: #b0f4ff;
+      margin: 10px 0;
+    }
+
+    .product-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin: 10px 0 15px;
+    }
+
+    .product-card button {
+      background: #117a65;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: not-allowed;
+      font-weight: bold;
+      transition: background 0.4s ease, color 0.4s ease, transform 0.3s ease;
+      margin: 5px;
+    }
+
+    .product-card button.active {
+      cursor: pointer;
+      background: #04AA6D;
+    }
+
+    .product-card button:hover.active {
+      background: #ffcc00;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    .wishlist-btn {
+      background: #444;
+      color: #ffcc00;
+    }
+
+    .wishlist-btn.active {
+      background: #ffcc00;
+      color: #000;
+    }
+
+    footer {
+      background-color: #117a65;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+      flex-shrink: 0;
+    }
+
+    .footer-links a {
+      margin: 0 15px;
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ffcc00;
+    }
+
+    @media (max-width: 500px) {
+      .controls input, .controls select {
+        width: 90%;
+        font-size: 0.9rem;
+      }
+
+      nav ul li {
+        display: block;
+        margin: 5px 0;
+      }
+    }
+
+    mark {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    #cartPanel {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background-color: #222;
+      border: 2px solid #04AA6D;
+      border-radius: 10px;
+      padding: 15px;
+      display: none;
+      z-index: 1000;
+    }
+
+    #cartPanel h4 {
+      margin: 0 0 10px 0;
+      color: #ffcc00;
+    }
+
+    #cartPanel ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #cartPanel ul li {
+      padding: 5px 0;
+      border-bottom: 1px solid #444;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #cartPanel ul li button {
+      background: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #cartInfo {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      background-color: #04AA6D;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active" href="Products.html">Products</a></li>
+      <li><a href="Blog.html">Blog</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <h1>Our Products</h1>
+  <h2>Step into Comfort, Style & Royalty</h2>
+
+  <div class="controls">
+    <input type="text" id="searchBar" placeholder="Search sneakers..." aria-label="Search Sneakers">
+    <select id="filterCategory" aria-label="Filter by Category">
+      <option value="all">All Categories</option>
+      <option value="casual">Casual</option>
+      <option value="sports">Sports</option>
+      <option value="luxury">Luxury</option>
+      <option value="cultural">Cultural</option>
+      <option value="eco">Eco</option>
+      <option value="retro">Retro</option>
+    </select>
+  </div>
+
+  <div class="products">
+
+    <!-- Example Product Card with Cart + Wishlist -->
+    <div class="product-card" data-category="casual">
+      <img src="Images/Converse black.png" alt="Classic Converse-style black sneaker">
+      <h3>Classic Converse Black</h3>
+      <p>Timeless streetwear sneaker with a versatile design.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="cultural">
+      <img src="Images/wahanda glide.png" alt="Wahanda Glide branded sneaker">
+      <h3>Wahanda Glide</h3>
+      <p>Bold patterns meet performance – a cultural classic.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="luxury">
+      <img src="Images/B-Lux One.png" alt="Black and gold luxury sneaker">
+      <h3>B-Lux One</h3>
+      <p>Luxury in every step – sleek black with gold accents.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="casual">
+      <img src="Images/Street Style.png" alt="Street style casual sneaker">
+      <h3>Street Style</h3>
+      <p>Casual sneakers designed for all-day comfort.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="casual">
+      <img src="Images/Urban Flex.png" alt="Urban Flex versatile sneaker">
+      <h3>Urban Flex</h3>
+      <p>Versatile and comfy – perfect for city life.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="luxury">
+      <img src="Images/Jordan Orlo Eclipse.png" alt="Jordan-style Eclipse sneaker">
+      <h3>Jordan Orlo Eclipse</h3>
+      <p>High-top luxury sneaker with a bold edge.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="casual">
+      <img src="Images/Air Force 1.png" alt="Classic Air Force 1 sneaker">
+      <h3>Air Force Style</h3>
+      <p>A modern take on the legendary Air Force sneaker.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="casual">
+      <img src="Images/Onyx Apex.png" alt="Minimalist classic white sneaker">
+      <h3>Onyx Apex</h3>
+      <p>Minimalist white sneaker – clean & classic.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="sports">
+      <img src="Images/Red Runner.png" alt="Bold red running sneaker">
+      <h3>Red Runner</h3>
+      <p>Stand out with this bold red running sneaker.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="casual">
+      <img src="Images/Blue wave.png" alt="Blue Wave lightweight sneaker">
+      <h3>Blue Wave</h3>
+      <p>Lightweight comfort designed for daily wear.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="eco">
+      <img src="Images/Eco Flux.png" alt="Eco-friendly green energy sneaker">
+      <h3>Eco Flux</h3>
+      <p>Sustainable sneakers built with eco materials.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="luxury">
+      <img src="Images/Golden-Glide.png" alt="Golden Glide premium sneaker">
+      <h3>Golden Glide</h3>
+      <p>Premium sneaker with radiant gold detailing.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="casual">
+      <img src="Images/Night Rider.png" alt="Sleek Night Rider sneaker">
+      <h3>Night Rider</h3>
+      <p>Sleek, stylish sneakers perfect for evenings out.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="retro">
+      <img src="Images/Stride Rite.png" alt="Retro-inspired Stride Rite sneaker">
+      <h3>Stride Rite</h3>
+      <p>Retro-inspired sneaker with a modern twist.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+    <div class="product-card" data-category="sports">
+      <img src="Images/Sports Max.png" alt="Sports Max athletic sneaker">
+      <h3>Sports Max</h3>
+      <p>Durable athletic sneakers made for performance.</p>
+      <button>Add to Cart</button>
+      <button class="wishlist-btn">♡</button>
+    </div>
+
+  </div>
+
+  <div id="cartInfo">Cart: 0 items</div>
+  <div id="cartPanel">
+    <h4>Your Cart</h4>
+    <ul></ul>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="Products.html">Products</a>
+      <a href="Blog.html">Blog</a>
+      <a href="About.html">About</
+.html">About</a>
+      <a href="Contact.html">Contact</a>
+    </div>
+    <p>© 2025 BW Footwear | Built with ❤️</p>
+  </footer>
+
+  <script>
+    const searchBar = document.getElementById("searchBar");
+    const filterDropdown = document.getElementById("filterCategory");
+    const cards = document.querySelectorAll(".product-card");
+    const cartInfo = document.getElementById("cartInfo");
+    const cartPanel = document.getElementById("cartPanel");
+    const cartList = cartPanel.querySelector("ul");
+    let cartItems = [];
+
+    function applyFilters() {
+      const searchText = searchBar.value.toLowerCase();
+      const category = filterDropdown.value;
+
+      cards.forEach(card => {
+        const nameEl = card.querySelector("h3");
+        const descEl = card.querySelector("p");
+        const name = nameEl.textContent.toLowerCase();
+        const desc = descEl.textContent.toLowerCase();
+        const cardCategory = card.getAttribute("data-category");
+
+        const matchesSearch = name.includes(searchText) || desc.includes(searchText);
+        const matchesCategory = (category === "all" || category === cardCategory);
+
+        if(matchesSearch && matchesCategory) {
+          card.style.display = "block";
+          card.classList.remove("hide");
+
+          if(searchText !== "") {
+            const regex = new RegExp(`(${searchText})`, "gi");
+            nameEl.innerHTML = nameEl.textContent.replace(regex, "<mark>$1</mark>");
+            descEl.innerHTML = descEl.textContent.replace(regex, "<mark>$1</mark>");
+          } else {
+            nameEl.innerHTML = nameEl.textContent;
+            descEl.innerHTML = descEl.textContent;
+          }
+
+        } else {
+          card.classList.add("hide");
+        }
+      });
+    }
+
+    searchBar.addEventListener("input", applyFilters);
+    filterDropdown.addEventListener("change", applyFilters);
+
+    document.querySelectorAll('nav ul li a').forEach(link => {
+      if(link.getAttribute('href') === window.location.pathname.split("/").pop()){
+        link.classList.add('active');
+      }
+    });
+
+    // Cart functionality
+    function updateCart() {
+      cartInfo.textContent = `Cart: ${cartItems.length} items`;
+      cartList.innerHTML = '';
+      cartItems.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "X";
+        removeBtn.addEventListener("click", () => {
+          cartItems.splice(index, 1);
+          updateCart();
+        });
+        li.appendChild(removeBtn);
+        cartList.appendChild(li);
+      });
+    }
+
+    document.querySelectorAll(".product-card button:not(.wishlist-btn)").forEach(btn => {
+      btn.classList.add("active");
+      btn.addEventListener("click", (e) => {
+        const productName = e.target.parentElement.querySelector("h3").textContent;
+        if(!cartItems.includes(productName)) {
+          cartItems.push(productName);
+          updateCart();
+        }
+      });
+    });
+
+    document.querySelectorAll(".wishlist-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+      });
+    });
+
+    cartInfo.addEventListener("click", () => {
+      cartPanel.style.display = cartPanel.style.display === "block" ? "none" : "block";
+    });
+  </script>
+
+</body>
+</html>

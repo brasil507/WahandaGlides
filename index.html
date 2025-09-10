@@ -394,11 +394,50 @@
       margin-bottom: 12px;
       border-bottom: 1px solid #444;
       padding-bottom: 8px;
+      flex-direction: column;
+      text-align: left;
     }
 
     .cart-item span {
       display: block;
       margin-top: 4px;
+    }
+
+    .cart-item-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+
+    .buy-now-btn {
+      flex: 1;
+      padding: 6px 10px;
+      background: #117a65;
+      color: white;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .buy-now-btn:hover {
+      background: #0a5a4d;
+    }
+
+    .remove-btn {
+      flex: 1;
+      padding: 6px 10px;
+      background: #e74c3c;
+      color: white;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      background: #c0392b;
     }
 
     .cart-toggle-btn {
@@ -515,12 +554,6 @@
     <button class="wishlist-btn"> Wishlist</button>
   </div>
 </div>
-      </div>
-
-      <!-- Filters Section (unchanged) -->
-
-      <!-- Product Table (unchanged) -->
-
     </section>
 
     <!-- Order Instructions -->
@@ -622,11 +655,34 @@
           cartEmpty.style.display = "block";
         } else {
           cartEmpty.style.display = "none";
-          cart.forEach(item => {
+          cart.forEach((item, index) => {
             const div = document.createElement("div");
             div.classList.add("cart-item");
-            div.innerHTML = `<strong>${item.name}</strong><span>${item.price}</span>`;
+            div.innerHTML = `
+              <strong>${item.name}</strong>
+              <span>${item.price}</span>
+              <div class="cart-item-buttons">
+                <button class="buy-now-btn" data-index="${index}">Buy Now</button>
+                <button class="remove-btn" data-index="${index}">Remove</button>
+              </div>
+            `;
             cartItemsDiv.appendChild(div);
+          });
+
+          document.querySelectorAll(".remove-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+              const index = btn.getAttribute("data-index");
+              cart.splice(index, 1);
+              updateCart();
+            });
+          });
+
+          document.querySelectorAll(".buy-now-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+              const index = btn.getAttribute("data-index");
+              const item = cart[index];
+              window.location.href = `mailto:brasilwahanda@gmail.com?subject=Order%20Request&body=I%20want%20to%20buy%20${encodeURIComponent(item.name)}%20for%20${encodeURIComponent(item.price)}`;
+            });
           });
         }
       }

@@ -4,37 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>B-LUX ONE LIMITED</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (Icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      background-color: #363636;
-      color: #000000;
+    /* --- Brand Colors --- */
+    :root {
+      --primary-green: #117a65;
+      --gold: #ffcc00;
+      --dark-gray: #242424;
+      --gray: #2a2a2a;
+      --white: #ffffff;
+      --light-gray: #363636;
     }
 
-    h1, h2, h3, h4, h5 {
-      color: #b0f4ff;
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: var(--light-gray);
+      color: var(--white);
+    }
+
+    h1, h2, h3 {
+      color: var(--gold);
     }
 
     p {
       font-size: 18px;
-      color: white;
+      color: var(--white);
     }
 
     a {
-      color: #117a65;
+      color: var(--primary-green);
       text-decoration: none;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: var(--gold);
     }
 
-   /* --- Menu Bar --- */
+    /* --- Menu Bar --- */
     nav {
-      background-color: #333;
+      background-color: var(--dark-gray);
       overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
 
     nav ul {
@@ -50,20 +67,21 @@
 
     nav ul li a {
       display: block;
-      color: white;
+      color: var(--white);
       padding: 14px 20px;
       text-decoration: none;
+      font-weight: bold;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     nav ul li a:hover {
-      background-color: #242424;
-      color: #ffcc00;
+      background-color: var(--primary-green);
+      color: var(--white);
     }
 
     nav ul li a.active {
-      background-color: #04AA6D;
-      color: white;
+      background-color: var(--primary-green);
+      color: var(--white);
     }
 
     /* --- Page Layout --- */
@@ -71,7 +89,6 @@
       padding: 40px;
       text-align: center;
       font-size: 1.2em;
-      color: #fff;
       position: relative;
       z-index: 1;
     }
@@ -88,7 +105,7 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+      background: rgba(36,36,36,0.85);
       z-index: 0;
     }
 
@@ -102,73 +119,126 @@
       z-index: 1;
     }
 
+    /* --- Fade In Animation --- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Contact Cards --- */
+    .card {
+      position: relative;
+      padding: 20px;
+      border-radius: 12px;
+      background: var(--gray);
+      color: var(--white);
+      flex: 1;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.8);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--primary-green);
+      box-shadow: 0 0 20px var(--primary-green);
+      transform: translateY(-5px);
+    }
+
     /* --- Contact Form --- */
     form {
-      background-color: rgba(128, 128, 128, 0.95);
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 400px;
-      flex: 1;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     label {
-      display: block;
-      margin-top: 10px;
       font-weight: bold;
-      color: #1c2e1c; 
+      color: var(--gold); 
+      text-align: left;
     }
 
     input, textarea {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #555;
-      border-radius: 4px;
-      background: #f9f9f9;
+      padding: 10px;
+      border: 1px solid var(--primary-green);
+      border-radius: 6px;
+      background: var(--dark-gray);
+      color: var(--white);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #bbb;
     }
 
     button {
-      margin-top: 15px;
-      padding: 10px 15px;
-      background-color: #000000;
-      color: white;
+      margin-top: 10px;
+      padding: 12px;
+      background-color: var(--primary-green);
+      color: var(--white);
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     button:hover {
-      background-color: #117a65;
+      background-color: var(--gold);
+      color: var(--dark-gray);
+      transform: scale(1.05);
+    }
+
+    /* --- Floating Success Message --- */
+    .success-message {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary-green);
+      color: var(--white);
+      padding: 15px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      animation: fadeIn 0.5s ease;
+      z-index: 9999;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* --- Contact Info --- */
-    .contact-info {
-      background-color: rgba(42, 42, 42, 0.95);
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 400px;
-      flex: 1;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      text-align: left;
-    }
-
     .contact-info h3 {
       margin-top: 0;
-      color: #ffcc00;
+      color: var(--gold);
     }
 
     .contact-info p {
-      margin: 8px 0;
-      color: #eee;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      color: var(--gold);
     }
 
     .map {
       margin-top: 15px;
       border-radius: 8px;
       overflow: hidden;
+      border: 2px solid var(--primary-green);
     }
 
     iframe {
@@ -181,18 +251,26 @@
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #242424;
-      color: white;
+      background-color: var(--dark-gray);
+      color: var(--white);
       margin-top: 40px;
     }
 
     .footer-links a {
       margin: 0 10px;
-      color: #b0f4ff;
+      color: var(--gold);
+      transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
-      color: #ffcc00;
+      color: var(--primary-green);
+      font-weight: bold;
+    }
+
+    .footer-links a.active {
+      text-decoration: underline;
+      color: var(--gold);
+      font-weight: bold;
     }
   </style>
 </head>
@@ -201,7 +279,8 @@
   <!-- Navigation Menu -->
   <nav>
     <ul>
-      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="index.html">Home</a></li>
+	  <li><a href="Products.html">Products</a></li>
       <li><a href="Blog.html">Blog</a></li>
       <li><a href="About.html">About</a></li>
       <li><a href="Contact.html">Contact</a></li>
@@ -216,29 +295,31 @@
 
       <div class="contact-container">
         <!-- Contact Form -->
-        <form onsubmit="return showMessage(event)">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
+        <div class="card fade-in">
+          <form onsubmit="return showMessage(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Type your message" required></textarea>
 
-          <button type="submit">Send Message</button>
-        </form>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+          </form>
+        </div>
 
         <!-- Contact Info -->
-        <div class="contact-info">
+        <div class="card contact-info fade-in">
           <h3>📞 Get in Touch</h3>
-          <p><strong>Phone:</strong> +254 712 345 678</p>
-          <p><strong>Email:</strong> info@bluxoneltd.com</p>
-          <p><strong>Address:</strong> Nairobi, Kenya</p>
-          <p><strong>Follow us:</strong>  
-            <a href="#">Facebook</a> |  
-            <a href="#">Instagram</a> |  
-            <a href="#">Twitter</a>
+          <p><i class="fas fa-phone"></i> +254 790 011 268</p>
+          <p><i class="fas fa-envelope"></i> info@bluxoneltd.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+          <p><i class="fas fa-share-alt"></i> Follow us:  
+            <a href="#"><i class="fab fa-facebook"></i></a>  
+            <a href="#"><i class="fab fa-instagram"></i></a>  
+            <a href="#"><i class="fab fa-twitter"></i></a>
           </p>
 
           <!-- Google Map -->
@@ -252,24 +333,43 @@
     </div>
   </div>
 
+  <!-- Floating Success Message -->
+  <div class="success-message" id="successMessage">
+    ✅ Thank you for contacting us! We’ll get back to you soon.
+  </div>
+
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 B-LUX ONE LIMITED. All rights reserved.</p>
     <div class="footer-links">
-      <a href="#">Privacy Policy</a> | 
-      <a href="#">Terms of Service</a>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+	  <a href="Products.html"><i class="fas fa-products"></i>Products</a>
+      <a href="Blog.html"><i class="fas fa-blog"></i> Blog</a>
+      <a href="About.html"><i class="fas fa-user"></i> About</a>
+      <a href="Contact.html"><i class="fas fa-envelope"></i> Contact</a>
     </div>
+    <p>&copy; 2025 B-LUX ONE LIMITED. All rights reserved.</p>
   </footer>
 
   <script>
     function showMessage(event) {
       event.preventDefault();
-      alert("✅ Thank you for contacting us! We’ll get back to you soon.");
+      const message = document.getElementById("successMessage");
+      message.style.display = "block";
+      setTimeout(() => {
+        message.style.display = "none";
+      }, 4000);
       return false;
     }
+
+    // Highlight active nav link
+    const currentPage = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll("nav ul li a, .footer-links a");
+    navLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active");
+      }
+    });
   </script>
 
 </body>
 </html>
-
-

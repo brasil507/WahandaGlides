@@ -264,6 +264,64 @@
       border-radius: 8px;
     }
 
+    /* --- Slideshow Styles --- */
+    .slideshow-container {
+      max-width: 800px;
+      position: relative;
+      margin: 40px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .slides {
+      display: none;
+    }
+
+    .slides img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 3px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .active-dot, .dot:hover {
+      background-color: #117a65;
+    }
+
     /* --- Order Section --- */
     .order-section {
       background: #2a2a2a;
@@ -481,6 +539,52 @@
     </div>
   </header>
 
+  <!-- Slideshow Section -->
+  <section class="slideshow-container">
+    <div class="slides fade">
+      <img src="Images/B-Lux One.png" alt="B-Lux One" style="width:100%">
+    </div>
+
+    <div class="slides fade">
+      <img src="Images/wahanda glide.png" alt="Wahanda Glide" style="width:100%">
+    </div>
+
+    <div class="slides fade">
+      <img src="Images/Street Style.png" alt="Street Style" style="width:100%">
+    </div>
+
+    <div class="slides fade">
+      <img src="Images/Urban Flex.png" alt="Urban Flex" style="width:100%">
+    </div>
+
+    <div class="slides fade">
+      <img src="Images/Night Rider.png" alt="Night Rider" style="width:100%">
+    </div>
+
+    <div class="slides fade">
+      <img src="Images/Stride Rite.png" alt="Stride Rite" style="width:100%">
+    </div>
+
+    <div class="slides fade">
+      <img src="Images/Sports Max.png" alt="Sports Max" style="width:100%">
+    </div>
+
+    <!-- Next and Previous Buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </section>
+
+  <!-- Dots for navigation -->
+  <div class="dot-container" style="text-align:center; margin-top: 20px;">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+    <span class="dot" onclick="currentSlide(7)"></span>
+  </div>
+
   <!-- Main Content -->
   <main>
     <section>
@@ -526,68 +630,131 @@
     <button class="wishlist-btn"> Wishlist</button>
   </div>
   <div class="product-card">
-    <img src="Images/Urban Flex.png" alt="Urban Flex Sneaker">
+    <img src="Images/Urban Flex.png" alt="Urban Flex">
     <h3>Urban Flex</h3>
-    <p class="price">$65</p>
-    <button class="buy-btn">Add to Cart</button>
-    <button class="wishlist-btn"> Wishlist</button>
-  </div>
-  <div class="product-card">
-    <img src="Images/Night Rider.png" alt="Sleek Night Rider sneaker">
-      <h3>Night Rider</h3>
-    <p class="price">$70</p>
-    <button class="buy-btn">Add to Cart</button>
-    <button class="wishlist-btn"> Wishlist</button>
-  </div>
-  <div class="product-card">
-    <img src="Images/Stride Rite.png" alt="Retro-inspired Stride Rite sneaker">
-      <h3>Stride Rite</h3>
     <p class="price">$50</p>
     <button class="buy-btn">Add to Cart</button>
     <button class="wishlist-btn"> Wishlist</button>
   </div>
   <div class="product-card">
-     <img src="Images/Sports Max.png" alt="Sports Max athletic sneaker">
-      <h3>Sports Max</h3>
-    <p class="price">$68</p>
+    <img src="Images/Night Rider.png" alt="Night Rider">
+    <h3>Night Rider</h3>
+    <p class="price">$65</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+  <div class="product-card">
+    <img src="Images/Stride Rite.png" alt="Stride Rite">
+    <h3>Stride Rite</h3>
+    <p class="price">$70</p>
+    <button class="buy-btn">Add to Cart</button>
+    <button class="wishlist-btn"> Wishlist</button>
+  </div>
+  <div class="product-card">
+    <img src="Images/Sports Max.png" alt="Sports Max">
+    <h3>Sports Max</h3>
+    <p class="price">$80</p>
     <button class="buy-btn">Add to Cart</button>
     <button class="wishlist-btn"> Wishlist</button>
   </div>
 </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <select id="priceFilter">
+          <option value="all">All Prices</option>
+          <option value="low">Below $50</option>
+          <option value="mid">$50 - $70</option>
+          <option value="high">Above $70</option>
+        </select>
+      </div>
+
+      <!-- Product Table -->
+      <div class="table-container">
+        <table class="product-table">
+          <tr>
+            <th>Sneaker</th>
+            <th>Image</th>
+            <th>Price</th>
+          </tr>
+          <tr>
+            <td>B-Lux One</td>
+            <td><img src="Images/B-Lux One.png" width="150" alt="B-Lux One sneaker"></td>
+            <td>$60</td>
+          </tr>
+          <tr>
+            <td>Wahanda Glide</td>
+            <td><img src="Images/wahanda glide.png" width="150" alt="Wahanda Glide sneaker"></td>
+            <td>$45</td>
+          </tr>
+          <tr>
+            <td>Street Style</td>
+            <td><img src="Images/Street Style.png" width="150" alt="Street Style sneaker"></td>
+            <td>$55</td>
+          </tr>
+          <tr>
+            <td>Urban Flex</td>
+            <td><img src="Images/Urban Flex.png" width="150" alt="Urban Flex sneaker"></td>
+            <td>$50</td>
+          </tr>
+          <tr>
+            <td>Night Rider</td>
+            <td><img src="Images/Night Rider.png" width="150" alt="Night Rider sneaker"></td>
+            <td>$65</td>
+          </tr>
+          <tr>
+            <td>Stride Rite</td>
+            <td><img src="Images/Stride Rite.png" width="150" alt="Stride Rite sneaker"></td>
+            <td>$70</td>
+          </tr>
+          <tr>
+            <td>Sports Max</td>
+            <td><img src="Images/Sports Max.png" width="150" alt="Sports Max sneaker"></td>
+            <td>$80</td>
+          </tr>
+        </table>
+      </div>
     </section>
 
-    <!-- Order Instructions -->
+    <!-- Brand Story -->
+    <section class="story">
+      <h3>Our Story</h3>
+      <p>At B-LUX ONE LIMITED, we believe sneakers should combine fashion and comfort without compromise. That’s why we create innovative, stylish, and durable footwear that fits every lifestyle.</p>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/iWI_uBH6R1g"
+                title="Wahanda Glide Story - YouTube video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- How to Place an Order -->
     <section class="order-section">
       <h3>How to Place an Order</h3>
       <div class="order-steps">
         <div class="order-card">
-          <i class="fas fa-shoe-prints"></i>
-          <h4>Step 1</h4>
-          <p>Choose your preferred shoe from the product list.</p>
+          <i class="fas fa-search"></i>
+          <h4>Browse Products</h4>
+          <p>Explore our sneaker collection and choose your perfect pair.</p>
         </div>
         <div class="order-card">
-          <i class="fas fa-ruler"></i>
-          <h4>Step 2</h4>
-          <p>Note your desired size and price.</p>
-        </div>
-        <div class="order-card">
-          <i class="fas fa-envelope"></i>
-          <h4>Step 3</h4>
-          <p>
-            <a href="mailto:brasilwahanda@gmail.com">📧 Email Us</a><br>
-            <a href="tel:+254790011268">📞 Call 0790011268</a><br>
-            <a href="https://wa.me/254790011268?text=Hello%20I%20want%20to%20order%20a%20shoe" target="_blank">💬 WhatsApp</a>
-          </p>
+          <i class="fas fa-shopping-cart"></i>
+          <h4>Add to Cart</h4>
+          <p>Click "Add to Cart" and review your selected items.</p>
         </div>
         <div class="order-card">
           <i class="fas fa-credit-card"></i>
-          <h4>Step 4</h4>
-          <p>Wait for confirmation and payment instructions.</p>
+          <h4>Make Payment</h4>
+          <p>Proceed to secure checkout and complete your payment.</p>
         </div>
         <div class="order-card">
           <i class="fas fa-truck"></i>
-          <h4>Step 5</h4>
-          <p>Receive your shoes via delivery or pickup.</p>
+          <h4>Fast Delivery</h4>
+          <p>Receive your sneakers at your doorstep in no time.</p>
         </div>
       </div>
     </section>
@@ -597,96 +764,106 @@
   <div class="cart-sidebar" id="cartSidebar">
     <h3>Your Cart</h3>
     <div id="cartItems"></div>
-    <p id="cartEmpty">Cart is empty</p>
   </div>
-
-  <!-- Cart Toggle Button -->
-  <div class="cart-toggle-btn" id="cartToggle">🛒 Cart</div>
+  <div class="cart-toggle-btn" onclick="toggleCart()">🛒</div>
 
   <!-- Footer -->
   <footer>
     <div class="footer-links">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="Products.html"><i class="fas fa-products"></i>Products</a>
+      <a href="Products.html"><i class="fas fa-shopping-bag"></i> Products</a>
       <a href="Blog.html"><i class="fas fa-blog"></i> Blog</a>
-      <a href="About.html"><i class="fas fa-user"></i> About</a>
+      <a href="About.html"><i class="fas fa-info-circle"></i> About</a>
       <a href="Contact.html"><i class="fas fa-envelope"></i> Contact</a>
     </div>
-    <p>&copy; 2025 B-LUX ONE LIMITED. All rights reserved.</p>
+    <p>&copy; 2025 B-LUX ONE LIMITED. All Rights Reserved.</p>
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Highlight active page
-      const currentPage = window.location.pathname.split("/").pop();
-      const navLinks = document.querySelectorAll("nav a, .footer-links a");
-      navLinks.forEach(link => {
-        if(link.getAttribute("href") === currentPage) {
-          link.classList.add("active");
-        }
-      });
+    // --- Slideshow Functionality ---
+    let slideIndex = 1;
+    showSlides(slideIndex);
 
-      // Cart functionality
-      const cartToggle = document.getElementById("cartToggle");
-      const cartSidebar = document.getElementById("cartSidebar");
-      const cartItemsDiv = document.getElementById("cartItems");
-      const cartEmpty = document.getElementById("cartEmpty");
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
 
-      let cart = [];
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
 
-      cartToggle.addEventListener("click", () => {
-        cartSidebar.classList.toggle("active");
-      });
-
-      document.querySelectorAll(".buy-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const card = btn.closest(".product-card");
-          const name = card.querySelector("h3").textContent;
-          const price = card.querySelector(".price").textContent;
-
-          cart.push({name, price});
-          updateCart();
-        });
-      });
-
-      function updateCart() {
-        cartItemsDiv.innerHTML = "";
-        if(cart.length === 0) {
-          cartEmpty.style.display = "block";
-        } else {
-          cartEmpty.style.display = "none";
-          cart.forEach((item, index) => {
-            const div = document.createElement("div");
-            div.classList.add("cart-item");
-            div.innerHTML = `
-              <strong>${item.name}</strong>
-              <span>${item.price}</span>
-              <div class="cart-item-buttons">
-                <button class="buy-now-btn" data-index="${index}">Buy Now</button>
-                <button class="remove-btn" data-index="${index}">Remove</button>
-              </div>
-            `;
-            cartItemsDiv.appendChild(div);
-          });
-
-          document.querySelectorAll(".remove-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-              const index = btn.getAttribute("data-index");
-              cart.splice(index, 1);
-              updateCart();
-            });
-          });
-
-          document.querySelectorAll(".buy-now-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-              const index = btn.getAttribute("data-index");
-              const item = cart[index];
-              window.location.href = `mailto:brasilwahanda@gmail.com?subject=Order%20Request&body=I%20want%20to%20buy%20${encodeURIComponent(item.name)}%20for%20${encodeURIComponent(item.price)}`;
-            });
-          });
-        }
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("slides");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
       }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active-dot", "");
+      }
+      if(slides.length > 0){
+        slides[slideIndex-1].style.display = "block";
+        if(dots[slideIndex-1]) dots[slideIndex-1].className += " active-dot";
+      }
+    }
+
+    // Auto slideshow
+    setInterval(() => {
+      plusSlides(1);
+    }, 5000);
+
+    // --- Cart Functionality ---
+    const cart = [];
+    const cartItemsContainer = document.getElementById("cartItems");
+
+    function toggleCart() {
+      document.getElementById("cartSidebar").classList.toggle("active");
+    }
+
+    document.querySelectorAll(".buy-btn").forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        const productCard = btn.parentElement;
+        const productName = productCard.querySelector("h3").innerText;
+        const productPrice = productCard.querySelector(".price").innerText;
+        const productImage = productCard.querySelector("img").src;
+
+        const product = { name: productName, price: productPrice, image: productImage };
+        cart.push(product);
+        renderCart();
+      });
     });
+
+    function renderCart() {
+      cartItemsContainer.innerHTML = "";
+      cart.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML = `
+          <img src="${item.image}" width="80" style="border-radius:8px; margin-bottom:5px;">
+          <span><strong>${item.name}</strong></span>
+          <span>${item.price}</span>
+          <div class="cart-item-buttons">
+            <button class="buy-now-btn" onclick="buyNow(${index})">Buy Now</button>
+            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `;
+        cartItemsContainer.appendChild(div);
+      });
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+
+    function buyNow(index) {
+      alert("Proceeding to buy: " + cart[index].name + " for " + cart[index].price);
+      cart.splice(index, 1);
+      renderCart();
+    }
   </script>
 </body>
 </html>
